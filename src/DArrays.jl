@@ -12,4 +12,12 @@ function .*{T}(A::DArray{T},B::Number)
         map(r->r*B,A)
     end
 
+function ./{T}(A::DArray{T},B::Number)
+        map(r->r/B,A)
+    end
+
+function .\{T}(A::DArray{T},B::Number)
+        map(r->r\B,A)
+    end
+
 end
