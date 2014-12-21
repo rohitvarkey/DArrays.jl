@@ -1,5 +1,6 @@
-module DArrays
+module DArrays #operations on DArrays
 
-# package code goes here
-
-end # module
+function .+{T}(A::DArray{T},B::Number)
+        map(r->r+B,A)
+    end
+end
