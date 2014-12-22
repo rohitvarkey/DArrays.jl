@@ -1,23 +1,13 @@
-module DArrays #operations on DArrays
+module DArrays
 
-function .+{T}(A::DArray{T},B::Number)
-        map(r->r+B,A)
-    end
+import Base
 
-function .-{T}(A::DArray{T},B::Number)
-        map(r->r-B,A)
+for f in (:.+, :.-, :.*, :./, :.%, :.<<, :.>>, :div, :mod, :rem, :&, :|, :$)
+    @eval begin
+        function ($f){t}(a::darray{t}, b::number)
+            map(r->$(f)(r, b), a)
+        end
     end
-
-function .*{T}(A::DArray{T},B::Number)
-        map(r->r*B,A)
-    end
-
-function ./{T}(A::DArray{T},B::Number)
-        map(r->r/B,A)
-    end
-
-function .\{T}(A::DArray{T},B::Number)
-        map(r->r\B,A)
-    end
+end
 
 end
