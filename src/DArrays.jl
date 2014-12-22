@@ -1,5 +1,13 @@
 module DArrays
 
-# package code goes here
+import Base
 
-end # module
+for f in (:.+, :.-, :.*, :./, :.%, :.<<, :.>>, :div, :mod, :rem, :&, :|, :$)
+    @eval begin
+        function ($f){t}(a::darray{t}, b::number)
+            map(r->$(f)(r, b), a)
+        end
+    end
+end
+
+end
